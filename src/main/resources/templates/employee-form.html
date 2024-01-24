@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="vh-100 container">
+    <h3>Employee Directory</h3>
+    <hr>
+    <h5>save Employee</h5>
+    <form class="form-check w-100" method="post" action="employees" th:object="${employee}">
+        <input type="text" placeholder="First Name" class="input-group-text" name="firstName">
+        <br>
+        <input type="text" placeholder="Last Name" class="input-group-text" name="lastName">
+        <br>
+        <input type="email" placeholder="Email" class="input-group-text" name="email">
+        <button class="btn btn-outline-info my-3" type="submit" >save</button>
+    </form>
+    <hr>
+    <a href="list" class="text-decoration-none">back to Employee List</a>
+</div>
+</body>
+</html>

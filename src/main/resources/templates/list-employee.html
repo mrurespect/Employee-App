@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="vh-100 container position-relative">
+    <h3>Employee Directory</h3>
+    <hr>
+    <div>
+        <a sec:authorize="hasAnyRole('MANAGER','ADMIN')" class="btn btn-info mb-3" th:href="@{/employees/addEmployee}">Add Employee</a>
+    </div>
+    <table class="w-100 table table-light" border="1">
+        <thead class="bg-dark">
+            <tr class="text-white">
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <td th:if="${isAdmin}">~</td>
+                <td th:if="${isAdmin}">-</td>
+            </tr>
+        </thead>
+        <tbody th:each="employee : ${employees}">
+        <tr>
+            <form th:if="${employee.getId() == changeId}" method="post"  th:action="employees" th:object="${employee}">
+                <input type="hidden" name="id" th:value="${employee.getId()}">
+                <td><input name="firstName" th:value="${employee.getFirstName()}" class="border-0 rounded-pill p-2"></td>
+                <td><input name="lastName" th:value="${employee.getLastName()}" class="border-0 rounded-pill p-2"></td>
+                <td><input name="email" th:value="${employee.getEmail()}" class="border-0 rounded-pill p-2"></td>
+                <td><button type="submit" class="btn btn-info">Save</button></td>
+            </form>
+            <div th:if="${employee.getId() != changeId}">
+                <td><input disabled  th:value="${employee.getFirstName()}"  class="border-0 rounded-pill p-2" ></td>
+                <td><input disabled th:value="${employee.getLastName()}" class="border-0 rounded-pill p-2"></td>
+                <td><input disabled th:value="${employee.getEmail()}" class="border-0 rounded-pill p-2"></td>
+                <td th:if="${isAdmin}">
+                    <a th:href="@{/employees/enableChange/{id}(id=${employee.getId()})}" class="btn btn-info" >
+                        update
+                    </a>
+                </td>
+            </div>
+            <td th:if="${isAdmin}">
+                <button class="btn btn-danger" th:data-name="${employee.getId()}" th:onclick="deleteEmployee(this.getAttribute('data-name'))">delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="position-absolute top-0 end-0 my-2  d-flex">
+        <div>
+            <button class="mx-2 btn btn-outline-secondary" onclick="profile()">
+                Profile
+            </button>
+            <div id="profile" class="bg-secondary  position-absolute end-0 my-3 rounded " style="width: 200%;display: none;height: 50vh">
+                <table class=" h-50 m-4">
+                    <tr>
+                        <th>Username:</th>
+                        <td><span sec:authentication="principal.username"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Role (s) :</th>
+                        <td><span sec:authentication="principal.authorities"></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <form action="#" th:action="@{/logout}" method="post">
+            <input class="btn btn-outline-secondary" type="submit" value="logout"/>
+        </form>
+    </div>
+
+</div>
+<script>
+    const profil =document.querySelector("#profile");
+    function profile(){
+        if (profil.style.display==="none"){
+            profil.style.display="block";
+        }else profil.style.display="none";
+        console.log(22)
+    }
+    async function deleteEmployee(id) {
+        if (confirm("are you sure you want to delete this employee !")){
+            // Retrieve the employee ID from the hidden td element
+            console.log("Deleting employee with ID: " + id);
+            await fetch("employees/" + id, {
+                method: "DELETE"
+            }).then(()=>{
+                location.reload();
+            })
+        }
+    }
+</script>
+</body>
+</html>

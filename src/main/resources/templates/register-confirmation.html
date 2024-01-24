@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Successfully Registered</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            border-top: 1px solid #007bff;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        a:hover {
+            color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+<h2>User Registered Successfully!</h2>
+<ul>
+    <li th:text="'User name: ' + ${webUser.getUsername()}"></li>
+</ul>
+<hr>
+<a th:href="@{/showMyLoginPage}">Login with a new username</a>
+</body>
+
+</html>
