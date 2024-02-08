@@ -61,6 +61,8 @@ User input is validated using Spring Boot Starter Validation. This ensures that 
 
 ## Logging Simplified with AOP
 Using Aspect-Oriented Programming (AOP). The `LoggingAspect` class captures key points like method calls and exceptions, streamlining logging. This approach minimizes code repetition, simplifies maintenance, and seamlessly integrates customizable logging into the application.
+![Capture d’écran 2024-02-09 005155](https://github.com/mrurespect/Employee-App/assets/121578147/1a1fcc58-a40c-4447-8edb-55c3ced60509)
+
 
 ## Exception Handling
 
