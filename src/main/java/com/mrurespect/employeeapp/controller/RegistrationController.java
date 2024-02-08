@@ -1,4 +1,4 @@
-package com.mrurespect.employeeapp.rest;
+package com.mrurespect.employeeapp.controller;
 
 import com.mrurespect.employeeapp.entity.User;
 import com.mrurespect.employeeapp.security.WebUser;

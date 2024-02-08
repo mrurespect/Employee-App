@@ -1,4 +1,4 @@
-package com.mrurespect.employeeapp.rest;
+package com.mrurespect.employeeapp.controller;
 
 public class EmployeeErrorResponse {
     private int status;
