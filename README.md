@@ -11,6 +11,7 @@ This Spring Boot application implements a basic Employee Management System with 
 - [User Roles](#user-roles)
 - [User Registration and Login](#user-registration-and-login)
 - [User Validation](#user-validation)
+- [Logging Simplified with AOP](#logging-simplified-with-aop)
 - [Exception Handling](#exception-handling)
 - [Project Structure](#project-structure)
 - [Usage](#usage)
@@ -57,6 +58,9 @@ The application supports user registration and login with a custom JDBC table. T
 ## User Validation
 
 User input is validated using Spring Boot Starter Validation. This ensures that the data submitted through forms meets the required criteria.
+
+## Logging Simplified with AOP
+Using Aspect-Oriented Programming (AOP). The `LoggingAspect` class captures key points like method calls and exceptions, streamlining logging. This approach minimizes code repetition, simplifies maintenance, and seamlessly integrates customizable logging into the application.
 
 ## Exception Handling
 
